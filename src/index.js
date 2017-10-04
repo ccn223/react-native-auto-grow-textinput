@@ -66,6 +66,9 @@ export default class AutoGrowTextInput extends React.Component {
         { ...newProps }
         multiline={ true }
         style={[ externalStyle, textInputStyle ]}
+        ref={(input) => {
+          this._textInputComponent = input
+          }}
       />
     );
   }
@@ -88,4 +91,12 @@ export default class AutoGrowTextInput extends React.Component {
   }
   
   _minHeight = () => this.props.minHeight || 30;
+
+  focus() {
+    if (!this._textInputComponent.isFocused()) {
+      this
+        ._textInputComponent
+        .focus();
+    }
+  }
 };
